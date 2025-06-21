@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  backend:
+    image: ghcr.io/tu_usuario/clinica-backend:latest
+    build:
+      context: ./backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: always
+  frontend:
+    image: ghcr.io/tu_usuario/clinica-frontend:latest
+    build:
+      context: ./frontend
+    ports:
+      - "80:80"
+    restart: always
