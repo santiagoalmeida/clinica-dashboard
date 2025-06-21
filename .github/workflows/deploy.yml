@@ -46,6 +46,6 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           port: ${{ secrets.VPS_PORT }}
           script: |
-            cd /ruta/del/proyecto/en/vps
+            cd /home/ubuntu/apps/clinica-dashboard
             docker compose pull
             docker compose up -d --remove-orphans
