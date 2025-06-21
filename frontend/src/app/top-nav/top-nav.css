@@ -1,0 +1,43 @@
+/* Mejora el botón hamburguesa */
+button.btn.btn-outline-primary.me-3 {
+  background: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(80,112,255,0.10);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+button.btn.btn-outline-primary.me-3:hover {
+  background: #e0e7ff;
+  box-shadow: 0 4px 16px rgba(80,112,255,0.18);
+}
+
+button.btn.btn-outline-primary.me-3 svg {
+  color: #6366f1;
+}
+
+.topnav-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #6366f1;
+  text-transform: uppercase;
+  margin-left: 0.5rem;
+  margin-bottom: 0;
+  margin-top: 0;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(80,112,255,0.08);
+  user-select: none;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .topnav-title {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+}

@@ -1,0 +1,140 @@
+/* Alto fijo y scroll vertical solo para el cuerpo de la tabla de citas */
+.tabla-scroll {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.tabla-scroll thead, .tabla-scroll tfoot {
+  width: 100%;
+  table-layout: fixed;
+  display: table;
+}
+
+.tabla-scroll tbody {
+  display: block;
+  max-height: 450px;
+  min-height: 450px;
+  overflow-y: auto;
+  width: 100%;
+  position: relative;
+}
+
+.tabla-scroll thead tr, .tabla-scroll tfoot tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.tabla-scroll tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.tabla-scroll th {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  height: 3.5rem;
+  vertical-align: middle;
+  font-size: 1rem;
+  line-height: 1.2;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  text-align: center;
+}
+
+.tabla-scroll td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 0.98rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  box-sizing: border-box;
+}
+
+.tabla-scroll th,
+.tabla-scroll td {
+  width: 9.09%; /* 100% / 11 columnas */
+}
+
+/* Ajuste de anchos para columnas específicas */
+.tabla-scroll th:nth-child(1),
+.tabla-scroll td:nth-child(1) { width: 14%; } /* Médico */
+.tabla-scroll th:nth-child(2),
+.tabla-scroll td:nth-child(2) { width: 10%; } /* Fecha */
+.tabla-scroll th:nth-child(3),
+.tabla-scroll td:nth-child(3) { width: 8%; } /* Hora */
+
+/* Columnas numéricas más delgadas */
+.tabla-scroll th:nth-child(n+4):nth-child(-n+11),
+.tabla-scroll td:nth-child(n+4):nth-child(-n+11) {
+  width: 6%;
+  min-width: 48px;
+  max-width: 70px;
+}
+
+/* Footer de la tabla: padding y mejor presentación */
+.tabla-scroll tfoot td {
+  padding: 16px 24px 12px 24px;
+  background: #fff;
+  border-top: 1px solid #e0e0e0;
+}
+
+.paginacion-bar {
+  padding: 0 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-row {
+  height: 450px;
+  width: 100%;
+}
+
+.loading-row td {
+  height: 450px;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  border: 6px solid #e0e7ff;
+  border-top: 6px solid #6366f1;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 0.5rem;
+}
+
+.loading-text {
+  color: #6366f1;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.loading-row .d-flex {
+  height: 100%;
+  min-height: 100%;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/* Alinear a la izquierda solo las celdas del cuerpo para Médico, Fecha y Hora */
+.tabla-scroll tbody td:nth-child(1),
+.tabla-scroll tbody td:nth-child(2),
+.tabla-scroll tbody td:nth-child(3) {
+  text-align: left;
+  padding-left: 1rem;
+}

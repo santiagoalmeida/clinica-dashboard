@@ -1,0 +1,7 @@
+### Obtener lista de médicos activos
+GET http://localhost:3000/api/medicos
+Content-Type: application/json
+
+### Obtener agendas filtradas y paginadas
+GET http://localhost:3000/api/agendas?fechaDesde=2025-06-01&fechaHasta=2025-06-30&idMedico=64&page=1&limit=2
+Content-Type: application/json

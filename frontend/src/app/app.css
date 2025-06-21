@@ -1,0 +1,20 @@
+/* Fondo general */
+body, .dashboard-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 100%);
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Main Content */
+.main-content {
+  background: transparent;
+  padding: 32px;
+}
+
+/* Top Nav */
+app-top-nav {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px 0 rgba(80, 112, 255, 0.08);
+  display: block;
+}

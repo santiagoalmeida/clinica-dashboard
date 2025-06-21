@@ -1,0 +1,26 @@
+<aside class="sidebar bg-white border-end d-flex flex-column align-items-start p-3 vh-100">
+  <div class="mb-4 w-100">
+    <h4 class="logo mb-3 text-secondariy d-flex align-items-center">
+      <i class="bi bi-speedometer2 me-2"></i>Dashboard
+    </h4>
+  </div>
+  <nav class="w-100">
+    <ul class="nav nav-pills flex-column w-100">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <i class="bi bi-house-door me-2"></i> Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/citas" routerLinkActive="active">
+          <i class="bi bi-calendar-check me-2"></i> Agenda de citas
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/medicos" routerLinkActive="active">
+          <i class="bi bi-person-badge me-2"></i> Médicos
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>

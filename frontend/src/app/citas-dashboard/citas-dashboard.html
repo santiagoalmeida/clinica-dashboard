@@ -1,0 +1,143 @@
+<div class="mt-4">
+  <!-- Filtros -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <form class="row g-3 align-items-end">
+        <!-- Dropdown de Médico -->
+        <div class="col-md-4">
+          <label for="medico" class="form-label">Médico</label>
+          <select id="medico" class="form-select" [(ngModel)]="filtroMedico" name="medico" (ngModelChange)="filtrar()">
+            <option value="">Todos</option>
+            @for (medico of medicos; track medico.IdMedico) {
+              <option [value]="medico.IdMedico">{{ medico.NomMedico }}</option>
+            }
+          </select>
+        </div>
+        <!-- Datepicker Desde -->
+        <div class="col-md-3">
+          <label for="fechaDesde" class="form-label">Fecha desde</label>
+          <input type="date" id="fechaDesde" class="form-control" [(ngModel)]="fechaDesde" name="fechaDesde" (ngModelChange)="filtrar()">
+        </div>
+        <!-- Datepicker Hasta -->
+        <div class="col-md-3">
+          <label for="fechaHasta" class="form-label">Fecha hasta</label>
+          <input type="date" id="fechaHasta" class="form-control" [(ngModel)]="fechaHasta" name="fechaHasta" (ngModelChange)="filtrar()">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Tabla de citas -->
+  <div class="table-responsive">
+    <table class="table table-bordered table-sm align-middle text-center tabla-scroll">
+      <thead class="table-light">
+        <tr>
+          <th>Médico</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>NUEVA CONSULTA</th>
+          <th>PRIMERA CITA</th>
+          <th>CONTROL</th>
+          <th>CONTROL GLAUCOMA</th>
+          <th>CONTROL POST YAG</th>
+          <th>CONTROL POST PTERIGION</th>
+          <th>TOTAL Agendados</th>
+          <th>Capacidad SISTEMA</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (loading) {
+          <tr class="loading-row">
+            <td colspan="11">
+              <div class="d-flex flex-column align-items-center justify-content-center py-4">
+                <span class="loading-spinner"></span>
+                <span class="loading-text">Cargando datos, por favor espere...</span>
+              </div>
+            </td>
+          </tr>
+        }
+        @if (!loading && citasFiltradas.length === 0) {
+          <tr class="loading-row">
+            <td colspan="11">
+              <div class="d-flex flex-column align-items-center justify-content-center py-4">
+                <span class="d-flex align-items-center gap-2">
+                  <i class="bi bi-emoji-frown fs-2 text-secondary"></i>
+                  <span class="loading-text">sin resultados...</span>
+                </span>
+              </div>
+            </td>
+          </tr>
+        }
+        @if (!loading && citasFiltradas.length > 0) {
+          @for (cita of citasFiltradas; track cita) {
+          <tr>
+            <td>{{ cita.NomMedico }}</td>
+            <td>{{ cita.Fecha | date }}</td>
+            <td>{{ cita.Hora }}</td>
+            <td class="celda-numero">{{ cita.NuevaConsulta }}</td>
+            <td class="celda-numero">{{ cita.PrimeraCita }}</td>
+            <td class="celda-numero">{{ cita.Control }}</td>
+            <td class="celda-numero">{{ cita.ControlGlaucoma }}</td>
+            <td class="celda-numero">{{ cita.ControlPostYag }}</td>
+            <td class="celda-numero">{{ cita.ControlPostPterigion }}</td>
+            <td class="celda-numero">{{ cita.TotalAgendados }}</td>
+            <td class="celda-numero">{{ cita.CapacidadSistema }}</td>
+          </tr>
+          }
+        }
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="11">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 paginacion-bar">
+              <!-- Izquierda: Dropdown tamaño de página -->
+              <div>
+                <label for="pageSize" class="me-2 mb-0 small">Filas por página:</label>
+                <select id="pageSize" class="form-select d-inline-block w-auto" [(ngModel)]="limit" name="pageSize" (ngModelChange)="cambiarTamanioPagina($event)">
+                  <option *ngFor="let size of [10, 25, 50, 100]" [value]="size">{{ size }}</option>
+                </select>
+              </div>
+              <!-- Centro: Navegación -->
+              <nav aria-label="Paginación de citas">
+                <ul class="pagination mb-0 justify-content-center">
+                  <!-- Botón ir al inicio -->
+                  <li class="page-item" [class.disabled]="page === 1">
+                    <button class="page-link" (click)="irAPagina(1)" [disabled]="page === 1" aria-label="Primera página">
+                      <i class="bi bi-chevron-bar-left"></i>
+                    </button>
+                  </li>
+                  <!-- Botón anterior -->
+                  <li class="page-item" [class.disabled]="page === 1">
+                    <button class="page-link" (click)="cambiarPagina(-1)" [disabled]="page === 1" aria-label="Anterior">
+                      <i class="bi bi-chevron-left"></i>
+                    </button>
+                  </li>
+                  <!-- Botones numéricos dinámicos -->
+                  <li class="page-item" *ngFor="let p of paginasVisibles(); let i = index" [class.active]="page === p">
+                    <button class="page-link" (click)="irAPagina(p)">{{ p }}</button>
+                  </li>
+                  <!-- Botón siguiente -->
+                  <li class="page-item" [class.disabled]="page === totalPages">
+                    <button class="page-link" (click)="cambiarPagina(1)" [disabled]="page === totalPages" aria-label="Siguiente">
+                      <i class="bi bi-chevron-right"></i>
+                    </button>
+                  </li>
+                  <!-- Botón ir al final -->
+                  <li class="page-item" [class.disabled]="page === totalPages">
+                    <button class="page-link" (click)="irAPagina(totalPages)" [disabled]="page === totalPages" aria-label="Última página">
+                      <i class="bi bi-chevron-bar-right"></i>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+              <!-- Derecha: Resumen -->
+              <div class="text-end small text-muted">
+                Página {{ page }} de {{ totalPages }} ({{ total }} resultados)
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+/* Agrega esto a tu archivo styles.css */
+.dashboard-container {
+  min-height: 100vh;
+  background: #f6f8fc;
+}
+
+.statics-card {
+  background: #f6f8fc;
+  box-shadow: 0 0 10px #e0e7ff;
+}
+.main-content {
+  background: transparent;
+}
+.welcome-card {
+  background: #fff;
+  box-shadow: 0 0 20px #e0e7ff;
+}
+.profile-growth-card {
+  background: #fff;
+  box-shadow: 0 0 20px #e0e7ff;
+}
+.stat-card {
+  background: #f6f8fc;
+  box-shadow: 0 0 10px #e0e7ff;
+}
+.right-sidebar {
+  width: 270px;
+  background: transparent;
+}
+.right-sidebar .card {
+  background: #fff;
+  box-shadow: 0 0 15px #e0e7ff;
+  border: none;
+}
+.progress-circle {
+  position: relative;
+  display: inline-block;
+}
+.progress-circle svg {
+  display: block;
+}
+.progress-circle .position-absolute {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

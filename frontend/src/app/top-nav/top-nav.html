@@ -1,0 +1,17 @@
+<!-- Header -->
+<div class="d-flex align-items-center justify-content-between p-3" style="min-height: 56px;">
+    <div class="d-flex align-items-center gap-3">
+        <button class="btn btn-outline-primary me-3 d-flex align-items-center justify-content-center" type="button" (click)="onToggleSidebar()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect y="4" width="24" height="2" rx="1" fill="currentColor"/>
+              <rect y="11" width="24" height="2" rx="1" fill="currentColor"/>
+              <rect y="18" width="24" height="2" rx="1" fill="currentColor"/>
+            </svg>
+        </button>
+        <span class="topnav-title">{{ tituloPagina }}</span>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+        <i class="bi bi-calendar-event text-primary"></i>
+        <span class="text-muted small">{{ fechaActual }}</span>
+    </div>
+</div>
