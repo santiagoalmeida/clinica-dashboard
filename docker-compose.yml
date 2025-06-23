@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   backend:
-    image: ghcr.io/ubuntu/clinica-backend:latest
+    image: ghcr.io/santiagoalmeida/clinica-backend:latest
     build:
       context: ./backend
     ports:
@@ -10,7 +10,7 @@ services:
       - NODE_ENV=production
     restart: always
   frontend:
-    image: ghcr.io/ubuntu/clinica-frontend:latest
+    image: ghcr.io/santiagoalmeida/clinica-frontend:latest
     build:
       context: ./frontend
     ports:
