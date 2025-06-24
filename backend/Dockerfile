@@ -1,8 +1,13 @@
 # Dockerfile para backend (Node.js)
 FROM node:20-alpine
+
 WORKDIR /app
+
 COPY package*.json ./
-RUN npm install --production
+RUN npm install
+
 COPY . .
-EXPOSE 3000
-CMD ["node", "src/app.ts"]
+
+RUN npm run build   # Esto debe ejecutar tsc y generar dist/
+
+CMD ["node", "dist/app.js"]
