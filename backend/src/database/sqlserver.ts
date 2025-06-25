@@ -4,13 +4,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const config = {
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  server: process.env.DB_SERVER as string,
-  database: process.env.DB_DATABASE,
-  port: Number(process.env.DB_PORT),
+  user: 'SA',
+  password: 'kJsaun7691',
+  server: 'fov-sql-server',
+  database: 'db_fov',
+  port: Number(1433),
   options: {
-    encrypt: false, // Cambia según tu configuración
+    encrypt: false, 
     trustServerCertificate: true,
   },
 };
