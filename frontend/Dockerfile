@@ -5,6 +5,7 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build -- --output-path=dist
+RUN ls -la /app/dist  # Inspección de la carpeta dist
 
 FROM nginx:alpine
 COPY --from=build /app/dist /usr/share/nginx/html
